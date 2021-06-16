@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/users',function (){
     return \App\Models\User::all();
 });
-Route::post('/posts',function (){
+Route::post('/users',function (){
     request()->validate([
         'name'=>'required',
     ]);
