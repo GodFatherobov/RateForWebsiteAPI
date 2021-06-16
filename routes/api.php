@@ -18,9 +18,20 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
 Route::get('/users',function (){
     return \App\Models\User::all();
 });
+Route::post('/posts',function (){
+    request()->validate([
+        'name'=>'required',
+    ]);
+    return post::create([
+        'name'=>request('name')
+    ]);
+});
+
 Route::get('/posts',function (){
     return post::all();
 });
