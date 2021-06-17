@@ -37,11 +37,13 @@ Route::get('/posts',function (){
 });
 Route::post('/posts',function (){
     request()->validate([
+        'userid'=>'required',
         'url'=>'required',
         'status'=>'required',
         'type'=>'required',
     ]);
     return post::create([
+        'userid'=>request('userid'),
         'url'=>request('url'),
         'status'=>request('status'),
         'type'=>request('type'),
