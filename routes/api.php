@@ -27,7 +27,7 @@ Route::post('/users',function (){
     request()->validate([
         'name'=>'required',
     ]);
-    return post::create([
+    return \App\Models\User::create([
         'name'=>request('name')
     ]);
 });
