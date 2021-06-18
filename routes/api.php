@@ -25,11 +25,11 @@ Route::get('/users',function (){
     return \App\Models\User::all();
 });
 Route::post('/users',function (){
-    $user=0;
     request()->validate([
         'name'=>'required',
     ]);
     $name=request()->get('name');
+    $user=User::where('name','=', $name)->pluck('id');
     if($user[0]!=''){
         dd(123);
     }
