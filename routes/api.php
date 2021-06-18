@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,7 @@ Route::post('/users',function (){
     $name=request()->get('name');
     $user=User::where('name','=', $name);
     dd($user);
-    return \App\Models\User::create([
+    return User::create([
         'name'=>request('name')
     ]);
 });
