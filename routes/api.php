@@ -24,9 +24,11 @@ Route::get('/users',function (){
     return \App\Models\User::all();
 });
 Route::post('/users',function (){
+    dd(\request());
     request()->validate([
         'name'=>'required',
     ]);
+
     return \App\Models\User::create([
         'name'=>request('name')
     ]);
