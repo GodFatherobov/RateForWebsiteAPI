@@ -33,6 +33,7 @@ Route::post('/users',function (){
     if($user[0]!=''){
         dd(123);
     }
+    else
     dd(456);
 
     return User::create([
