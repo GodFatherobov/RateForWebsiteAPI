@@ -29,7 +29,7 @@ Route::post('/users',function (){
         'name'=>'required',
     ]);
     $name=request()->get('name');
-    $user=User::where('name','=', $name)->pluck('id');
+    $user=User::where('name','=', $name)->get('id');
     dd($user);
 
     return User::create([
