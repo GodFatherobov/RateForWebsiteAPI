@@ -30,6 +30,7 @@ Route::post('/users',function (){
     ]);
     $name=request()->get('name');
     $user=User::where('name','=', $name)->pluck('id');
+    dd($user);
     if($user!=''){
         dd(123);
     }
