@@ -28,7 +28,8 @@ Route::post('/users',function (){
         'name'=>'required',
     ]);
     $name=request()->get('name');
-    dd($name);
+    $user=User::where('name','=', $name);
+    dd($user);
     return \App\Models\User::create([
         'name'=>request('name')
     ]);
