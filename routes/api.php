@@ -31,14 +31,13 @@ Route::post('/users',function (){
     $name=request()->get('name');
     $user=User::where('name','=', $name)->pluck('id');
     if(!$user->isEmpty()){
-        dd(123);
+        $user=User::findOrFail($user[0]);
+        return($user);
     }
     else
-    dd(456);
-
-    return User::create([
-        'name'=>request('name')
-    ]);
+        return User::create([
+            'name'=>request('name')
+        ]);
 });
 
 Route::get('/posts',function (){
