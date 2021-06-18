@@ -30,7 +30,7 @@ Route::post('/users',function (){
     ]);
     $name=request()->get('name');
     $user=User::where('name','=', $name)->pluck('id');
-    if($user){
+    if($user!=emptyString()){
         dd(123);
     }
     else
