@@ -24,11 +24,11 @@ Route::get('/users',function (){
     return \App\Models\User::all();
 });
 Route::post('/users',function (){
-    dd(\request());
     request()->validate([
         'name'=>'required',
     ]);
-
+    $name=request()->get('name');
+    dd($name);
     return \App\Models\User::create([
         'name'=>request('name')
     ]);
