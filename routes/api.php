@@ -30,10 +30,10 @@ Route::post('/users',function (){
         'name'=>'required',
     ]);
     $name=request()->get('name');
-    if($user=User::where('name','=', $name)->pluck('id')){
-        dd($user);
+    if($user[0]!=''){
+        dd(123);
     }
-    dd($user);
+    dd(456);
 
     return User::create([
         'name'=>request('name')
