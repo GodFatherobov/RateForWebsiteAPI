@@ -46,15 +46,13 @@ Route::get('/posts',function (){
 Route::post('/posts',function (){
     $name=request()->get('username');
     $userid=User::where('name','=', $name)->pluck('id');
-    dd($userid);
     request()->validate([
-        'userid'=>'required',
         'url'=>'required',
         'status'=>'required',
         'type'=>'required',
     ]);
     return post::create([
-        'userid'=>request('userid'),
+        'userid'=>$userid[0],
         'url'=>request('url'),
         'status'=>request('status'),
         'type'=>request('type'),
