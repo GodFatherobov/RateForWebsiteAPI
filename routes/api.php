@@ -56,6 +56,7 @@ Route::post('/posts',function (){
     foreach ($urls as $i) {
         if($i==$url){
             $checkurl=false;
+            return ("same url");
         }
     }
     if($checkurl!=false){
