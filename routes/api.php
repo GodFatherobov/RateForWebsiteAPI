@@ -68,3 +68,9 @@ Route::post('/posts',function (){
     else
         return ("same url");
 });
+Route::post('/getposts',function (){
+    $name=request()->get('username');
+    $userid=User::where('name','=', $name)->pluck('id');
+    $posts = post::where('userid','=',$userid[0])->pluck();
+    return($posts);
+});
