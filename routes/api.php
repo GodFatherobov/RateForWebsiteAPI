@@ -46,8 +46,8 @@ Route::get('/posts',function (){
 Route::post('/posts',function (){
     $name=request()->get('username');
     $url=request()->get('url');
+    $checkurl=True;
     $urls = DB::table('posts')->pluck('url');
-    dd($urls);
     $userid=User::where('name','=', $name)->pluck('id');
     request()->validate([
         'url'=>'required',
@@ -56,7 +56,6 @@ Route::post('/posts',function (){
     foreach ($urls as $i) {
         if($i==$url){
             $checkurl=false;
-            return ("same url");
         }
     }
     if($checkurl!=false){
@@ -66,4 +65,6 @@ Route::post('/posts',function (){
             'status'=>request('status'),
         ]);
     }
+    else
+        return ("same url");
 });
