@@ -54,15 +54,15 @@ Route::post('/posts',function (){
         'status'=>'required',
     ]);
     foreach ($urls as $i) {
-        if($i==$url[0]){
-            return("exist url");
+        if($i==$url){
+            $checkurl=false;
         }
-        else{
-            return post::create([
-                'userid'=>$userid[0],
-                'url'=>request('url'),
-                'status'=>request('status'),
-            ]);
-        }
+    }
+    if($checkurl!=false){
+        return post::create([
+            'userid'=>$userid[0],
+            'url'=>request('url'),
+            'status'=>request('status'),
+        ]);
     }
 });
