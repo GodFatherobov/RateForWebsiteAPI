@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->unsignedBigInteger('userid');
             $table->string('url');
             $table->string('status');
-            $table->string('type');
             $table->timestamps();
         });
     }

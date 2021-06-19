@@ -49,12 +49,10 @@ Route::post('/posts',function (){
     request()->validate([
         'url'=>'required',
         'status'=>'required',
-        'type'=>'required',
     ]);
     return post::create([
         'userid'=>$userid[0],
         'url'=>request('url'),
         'status'=>request('status'),
-        'type'=>request('type'),
     ]);
 });
