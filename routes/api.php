@@ -56,10 +56,9 @@ Route::post('/posts',function (){
     foreach ($urls as $i) {
         if($i==$url){
             $checkurl=false;
-            dd(123);
         }
     }
-    if($checkurl!=false){
+    if($checkurl==true){
         return post::create([
             'userid'=>$userid[0],
             'url'=>request('url'),
