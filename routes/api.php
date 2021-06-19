@@ -47,13 +47,14 @@ Route::post('/posts',function (){
     $name=request()->get('username');
     $url=request()->get('url');
     $urls = DB::table('posts')->pluck('url');
+    dd($urls);
     $userid=User::where('name','=', $name)->pluck('id');
     request()->validate([
         'url'=>'required',
         'status'=>'required',
     ]);
     foreach ($urls as $i) {
-        if($i==$url){
+        if($i==$url[0]){
             return("exist url");
         }
         else{
