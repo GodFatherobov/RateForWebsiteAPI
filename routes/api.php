@@ -45,7 +45,7 @@ Route::get('/posts',function (){
 });
 Route::post('/posts',function (){
     $name=request()->get('username');
-    $userid=User::where('name','=', $name)->pluck('userid');
+    $userid=User::where('name','=', $name)->pluck('id');
     dd($userid);
     request()->validate([
         'userid'=>'required',
