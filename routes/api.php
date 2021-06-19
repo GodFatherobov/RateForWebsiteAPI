@@ -47,8 +47,8 @@ Route::post('/posts',function (){
     $name=request()->get('username');
     $url=request()->get('url');
     $checkurl=True;
-    $urls = DB::table('posts')->pluck('url');
     $userid=User::where('name','=', $name)->pluck('id');
+    $urls = post::where('userid','=',$userid[0])->pluck('url');
     request()->validate([
         'url'=>'required',
         'status'=>'required',
