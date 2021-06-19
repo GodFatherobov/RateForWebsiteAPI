@@ -45,14 +45,23 @@ Route::get('/posts',function (){
 });
 Route::post('/posts',function (){
     $name=request()->get('username');
+    $url=request()->get('url');
+    $urls = DB::table('posts')->pluck('url');
     $userid=User::where('name','=', $name)->pluck('id');
     request()->validate([
         'url'=>'required',
         'status'=>'required',
     ]);
-    return post::create([
-        'userid'=>$userid[0],
-        'url'=>request('url'),
-        'status'=>request('status'),
-    ]);
+    foreach ($urls as $i) {
+        if($i==$url){
+            return("exist url");
+        }
+        else{
+            return post::create([
+                'userid'=>$userid[0],
+                'url'=>request('url'),
+                'status'=>request('status'),
+            ]);
+        }
+    }
 });
