@@ -71,6 +71,6 @@ Route::post('/posts',function (){
 Route::post('/getposts',function (){
     $name=request()->get('username');
     $userid=User::where('name','=', $name)->pluck('id');
-    $posts = post::where('userid','=',$userid[0])->pluck();
+    $posts = post::where('userid','=',$userid[0])->get();
     return($posts);
 });
