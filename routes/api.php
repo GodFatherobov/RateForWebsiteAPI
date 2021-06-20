@@ -80,10 +80,10 @@ Route::get('/dislikeposts/{username}',function ($username){
     return($posts);
 });
 
-Route::get('/rate',function (){
+Route::get('/rates',function (){
     return(rate::all());
 });
-Route::get('/rate/{require}',function ($require){
+Route::get('/rates/{require}',function ($require){
     return(rate::all());
 });
 
