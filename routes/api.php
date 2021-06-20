@@ -67,7 +67,7 @@ Route::post('/posts',function (){
             if($i==$url){
                 $rate=rate::where('url',$url)->get();
                 $checkurl=False;
-                dd($rate);
+                dd($rate[0]);
             }
         }
         if($checkurl==True){
