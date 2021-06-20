@@ -48,7 +48,6 @@ Route::post('/posts',function (){
     $name=request()->get('username');
     $url=request()->get('url');
     $status=request()->get('status');
-    dd($status);
     $checkurl=True;
     $userid=User::where('name','=', $name)->pluck('id');
     $urls = post::where('userid','=',$userid[0])->pluck('url');
@@ -62,12 +61,13 @@ Route::post('/posts',function (){
         }
     }
     if($checkurl==true){
-        post::create([
-            'userid'=>$userid[0],
-            'url'=>request('url'),
-            'status'=>request('status'),
-        ]);
+        //post::create([
+        //    'userid'=>$userid[0],
+        //    'url'=>request('url'),
+        //    'status'=>request('status'),
+        //]);
         $urls=rate::all()->pluck('url');
+        dd($urls);
         $checkurl=True;
         foreach ($urls as $rurl) {
             if($rurl==$url){
