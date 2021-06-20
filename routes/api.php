@@ -70,10 +70,12 @@ Route::post('/posts',function (){
                 $dislikecount=rate::where('url',$url)->pluck('dislikecount');
                 if($status=='like'){
                     $likecount[0]=$likecount[0]+1;
-                    dd($likecount[0]);
 
                 }
-
+                else
+                    $dislikecount[0]=$dislikecount[0]+1;
+                $rates=100/($likecount[0]+$dislikecount[0])*$likecount[0];
+                dd($rates);
                 $checkurl=False;
                 $data=request()->validate([
                     'url'=>request($url),
