@@ -67,7 +67,6 @@ Route::post('/posts',function (){
             if($i==$url){
                 $rates=rate::where('url',$url)->pluck('id');
                 $rate=rate::findOrFail($rates[0]);
-                dd($rate);
                 $likecount=rate::where('url',$url)->pluck('likecount');
                 $dislikecount=rate::where('url',$url)->pluck('dislikecount');
                 if($status=='like'){
@@ -84,7 +83,7 @@ Route::post('/posts',function (){
                     'dislikecount'=>$dislikecount[0],
                     'rate'=>$result,
                 ]);
-                $rate[0]->update($data);
+                $rate->update($data);
             }
         }
         if($checkurl==True){
