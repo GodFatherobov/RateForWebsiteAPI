@@ -47,11 +47,10 @@ Route::get('/posts',function (){
 Route::post('/posts',function (){
     $name=request()->get('username');
     $url=request()->get('url');
+    $status=request()->get('status');
     $checkurl=True;
     $userid=User::where('name','=', $name)->pluck('id');
     $urls = post::where('userid','=',$userid[0])->pluck('url');
-    $urlss=post::all()->pluck('url');
-    dd($urlss);
     request()->validate([
         'url'=>'required',
         'status'=>'required',
@@ -62,11 +61,37 @@ Route::post('/posts',function (){
         }
     }
     if($checkurl==true){
-        return post::create([
+        post::create([
             'userid'=>$userid[0],
             'url'=>request('url'),
             'status'=>request('status'),
         ]);
+        $urls=rate::all()->pluck('url');
+        $checkurl=True;
+        foreach ($urls as $rurl) {
+            if($rurl==$url){
+                $rate=rate::where('url',$url)->get();
+                $checkurl=False;
+                dd($rate);
+            }
+        }
+        if($checkurl==True){
+            if($status=='like'){
+                rate::create([
+                    'url'=>$url,
+                    'likecount'=>request(1),
+                    'dislikecount'=>request(0),
+                    'rate'=>request(100),
+                ]);
+            }
+            else
+                rate::create([
+                    'url'=>$url,
+                    'likecount'=>request(0),
+                    'dislikecount'=>request(1),
+                    'rate'=>request(0),
+                ]);
+        }
     }
     else
         return ("same url");
