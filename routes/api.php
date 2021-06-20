@@ -50,6 +50,8 @@ Route::post('/posts',function (){
     $checkurl=True;
     $userid=User::where('name','=', $name)->pluck('id');
     $urls = post::where('userid','=',$userid[0])->pluck('url');
+    $urlss=post::all()->pluck('url');
+    dd($urlss);
     request()->validate([
         'url'=>'required',
         'status'=>'required',
