@@ -73,4 +73,9 @@ Route::get('/posts/{username}',function ($username){
     $posts=post::where('userid','=',$userid[0])->where('status','like')->get();
     return($posts);
 });
+Route::get('/dislikeposts/{username}',function ($username){
+    $userid=User::where('name','=', $username)->pluck('id');
+    $posts=post::where('userid','=',$userid[0])->where('status','dislike')->get();
+    return($posts);
+});
 
