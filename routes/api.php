@@ -75,12 +75,14 @@ Route::post('/posts',function (){
                 else
                     $dislikecount[0]=$dislikecount[0]+1;
                 $rates=100/($likecount[0]+$dislikecount[0])*$likecount[0];
-                dd($rates);
                 $checkurl=False;
                 $data=request()->validate([
                     'url'=>request($url),
+                    'likecount'=>$likecount[0],
+                    'dislikecount'=>$dislikecount[0],
+                    'rate'=>$rates,
                 ]);
-                dd($rate[0]);
+                $rate[0]->update($data);
             }
         }
         if($checkurl==True){
