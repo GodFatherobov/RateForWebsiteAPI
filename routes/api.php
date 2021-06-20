@@ -61,11 +61,6 @@ Route::post('/posts',function (){
         }
     }
     if($checkurl==true){
-        post::create([
-            'userid'=>$userid[0],
-            'url'=>request('url'),
-            'status'=>request('status'),
-        ]);
         $urls=rate::all()->pluck('url');
         $checkurl=True;
         foreach ($urls as $rurl) {
@@ -92,7 +87,11 @@ Route::post('/posts',function (){
                     'rate'=>0,
                 ]);
         }
-        return('create success');
+        return post::create([
+            'userid'=>$userid[0],
+            'url'=>request('url'),
+            'status'=>request('status'),
+        ]);
     }
     else
         return ("same url");
