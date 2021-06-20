@@ -79,3 +79,8 @@ Route::get('/dislikeposts/{username}',function ($username){
     return($posts);
 });
 
+
+Route::get('/searchposts/{require}',function ($require){
+    return post::all();
+});
+
