@@ -61,11 +61,11 @@ Route::post('/posts',function (){
         }
     }
     if($checkurl==true){
-        //post::create([
-        //    'userid'=>$userid[0],
-        //    'url'=>request('url'),
-        //    'status'=>request('status'),
-        //]);
+        post::create([
+            'userid'=>$userid[0],
+            'url'=>request('url'),
+            'status'=>request('status'),
+        ]);
         $urls=rate::all()->pluck('url');
         $checkurl=True;
         foreach ($urls as $rurl) {
@@ -79,17 +79,17 @@ Route::post('/posts',function (){
             if($status=='like'){
                 rate::create([
                     'url'=>$url,
-                    'likecount'=>request(1),
-                    'dislikecount'=>request(0),
-                    'rate'=>request(100),
+                    'likecount'=>1,
+                    'dislikecount'=>0,
+                    'rate'=>100,
                 ]);
             }
             else
                 rate::create([
                     'url'=>$url,
-                    'likecount'=>request(0),
-                    'dislikecount'=>request(1),
-                    'rate'=>request(0),
+                    'likecount'=>0,
+                    'dislikecount'=>1,
+                    'rate'=>0,
                 ]);
         }
         return('create success');
