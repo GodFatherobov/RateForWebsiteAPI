@@ -92,6 +92,7 @@ Route::post('/posts',function (){
                     'rate'=>request(0),
                 ]);
         }
+        return('create success');
     }
     else
         return ("same url");
