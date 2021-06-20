@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\post;
+use App\Models\rate;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,6 @@ Route::get('/dislikeposts/{username}',function ($username){
 
 
 Route::get('/rate/{require}',function ($require){
-    return(post::all());
+    return(rate::all());
 });
 
