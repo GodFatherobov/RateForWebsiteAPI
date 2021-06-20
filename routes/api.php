@@ -65,7 +65,9 @@ Route::post('/posts',function (){
         $checkurl=True;
         foreach ($urls as $i) {
             if($i==$url){
-                $rate=rate::where('url',$url)->get();
+                $rates=rate::where('url',$url)->pluck('id');
+                $rate=rate::findOrFail($rates[0]);
+                dd($rate);
                 $likecount=rate::where('url',$url)->pluck('likecount');
                 $dislikecount=rate::where('url',$url)->pluck('dislikecount');
                 if($status=='like'){
