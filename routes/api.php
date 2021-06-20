@@ -69,7 +69,7 @@ Route::post('/posts',function (){
                 $likecount=rate::where('url',$url)->pluck('likecount');
                 $dislikecount=rate::where('url',$url)->pluck('dislikecount');
                 if($status=='like'){
-                    $likecount[0]++;
+                    $likecount[0]=$likecount[0]+1;
                     dd($likecount[0]);
 
                 }
