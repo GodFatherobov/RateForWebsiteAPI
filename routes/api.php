@@ -65,7 +65,7 @@ Route::post('/posts',function (){
         $checkurl=True;
         foreach ($urls as $i) {
             if($i==$url){
-                $rate=rate::where('url',$url);
+                $rate=rate::where('url',$url)->pluck();
                 $checkurl=False;
                 dd($rate);
             }
