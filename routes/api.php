@@ -48,6 +48,7 @@ Route::post('/posts',function (){
     $name=request()->get('username');
     $url=request()->get('url');
     $status=request()->get('status');
+    dd($status);
     $checkurl=True;
     $userid=User::where('name','=', $name)->pluck('id');
     $urls = post::where('userid','=',$userid[0])->pluck('url');
