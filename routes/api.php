@@ -67,7 +67,6 @@ Route::post('/posts',function (){
         //    'status'=>request('status'),
         //]);
         $urls=rate::all()->pluck('url');
-        dd($url);
         $checkurl=True;
         foreach ($urls as $rurl) {
             if($rurl==$url){
