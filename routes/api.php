@@ -80,14 +80,7 @@ Route::get('/dislikeposts/{username}',function ($username){
 });
 
 
-Route::get('/searchposts/{require}',function ($require){
-    $posts=post::all();
-    $likecount=0;
-    foreach ($posts as $post){
-        if(($post->status)=='like')
-        $likecount++;
-    }
-    dd($likecount);
+Route::get('/rate/{require}',function ($require){
     return(post::all());
 });
 
