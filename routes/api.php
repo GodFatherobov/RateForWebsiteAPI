@@ -70,7 +70,7 @@ Route::post('/posts',function (){
 });
 Route::get('/posts/{username}',function ($username){
     $userid=User::where('name','=', $username)->pluck('id');
-    $posts=post::where('userid','=',$userid[0])->get();
+    $posts=post::where('userid','=',$userid[0])->where('status','like')->get();
     return($posts);
 });
 
