@@ -83,6 +83,7 @@ Route::post('/posts',function (){
                     'dislikecount'=>$dislikecount[0],
                     'rate'=>$result,
                 ]);
+                dd($data);
                 $rate->update($data);
             }
         }
