@@ -66,8 +66,14 @@ Route::post('/posts',function (){
         foreach ($urls as $i) {
             if($i==$url){
                 $rate=rate::where('url',$url)->get();
-                $likecount=rate::where('url',$url)->pluck('likecount');
+                $likecount=$likecount[0]=rate::where('url',$url)->pluck('likecount');
                 dd($likecount);
+                $dislikecount=rate::where('url',$url)->pluck('dislikecount');
+                if($status=='like'){
+                    $likecount[0]++;
+
+                }
+
                 $checkurl=False;
                 $data=request()->validate([
                     'url'=>request($url),
