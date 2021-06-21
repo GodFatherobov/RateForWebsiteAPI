@@ -143,7 +143,7 @@ Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$
         }
     }
     $result = (object)$picks;
-    return($picks);
+    return($result);
 });
 
 
