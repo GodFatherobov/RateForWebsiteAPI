@@ -139,7 +139,7 @@ Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$
     }
     else {
         foreach ($data as $datum) {
-            $picks[] = rate::where('rate', '<=', $percent)->where('url', $datum)->get();
+            $picks = rate::where('rate', '<=', $percent)->where('url', $datum)->get();
         }
     }
     return($picks);
