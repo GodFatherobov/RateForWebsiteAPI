@@ -126,6 +126,11 @@ Route::get('/rates',function (){
     return(rate::all());
 });
 Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$upordown){
+    $urls=Rate::all()->pluck('url');
+    dd($urls);
+    foreach ($urls as $url){
+
+    }
     if($upordown=='up')
         return(rate::where('rate','>',$percent)->get());
 });
