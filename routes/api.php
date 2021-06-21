@@ -126,7 +126,8 @@ Route::get('/rates',function (){
     return(rate::all());
 });
 Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$upordown){
-    return(rate::all());
+    if($upordown=='up')
+        return(rate::where('rate','>',$percent)->get());
 });
 
 
