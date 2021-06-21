@@ -122,11 +122,10 @@ Route::get('/dislikeposts/{username}',function ($username){
     $posts=post::where('userid','=',$userid[0])->where('status','dislike')->get();
     return($posts);
 });
-
 Route::get('/rates',function (){
     return(rate::all());
 });
-Route::get('/rates/{require}',function ($require){
+Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$upordown){
     return(rate::all());
 });
 
