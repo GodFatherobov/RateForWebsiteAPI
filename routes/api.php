@@ -142,9 +142,9 @@ Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$
             $picks+= rate::where('rate', '<=', $percent)->where('url', $datum)->get();
         }
     }
-        dd($pick[][0]);
+        dd($picks[][0]);
 
-    }
+
 
 });
 
