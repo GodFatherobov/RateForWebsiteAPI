@@ -143,7 +143,7 @@ Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$
         }
     }
     foreach ($picks as $pick){
-        $result[]=stripslashes($pick);
+        $result[]=trim($pick, '\[]');
     }
     return($result);
     //return($picks);
