@@ -129,14 +129,13 @@ Route::get('/posts/delete/{username}/{url}',function ($username,$url){
     $dislikecount=rate::where('url',$url)->pluck('dislikecount');
     if($status[0]=='like')
     {
-        dd(1);
-        //rate::where('url','=',$url)->update(array('likecount' => $likecount[0]-1));
+        rate::where('url','=',$url)->update(array('likecount' => $likecount[0]-1));
     }
     else{
-        dd(2);
-        //rate::where('url','=',$url)->update(array('dislikecount' => $dislikecount[0]-1));
+        rate::where('url','=',$url)->update(array('dislikecount' => $dislikecount[0]-1));
     }
-    return($post);
+    post::where('userid','=',$userid[0])->where('url',$url)->delete();
+    return(post::all());
 });
 
 Route::get('/rates',function (){
