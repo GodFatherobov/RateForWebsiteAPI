@@ -125,6 +125,18 @@ Route::get('/dislikeposts/{username}',function ($username){
 Route::get('/posts/delete/{username}/{url}',function ($username,$url){
     $userid=User::where('name','=', $username)->pluck('id');
     $post=post::where('userid','=',$userid[0])->where('url',$url)->get();
+    $rate=rate::where('url','=',$url)->get();
+    $likecount=rate::where('url',$url)->pluck('likecount');
+    $dislikecount=rate::where('url',$url)->pluck('dislikecount');
+    if(($post->status)=='like')
+    {
+        dd(1);
+        //rate::where('url','=',$url)->update(array('likecount' => $likecount[0]-1));
+    }
+    else{
+        dd(2);
+        //rate::where('url','=',$url)->update(array('dislikecount' => $dislikecount[0]-1));
+    }
     return($post);
 });
 
