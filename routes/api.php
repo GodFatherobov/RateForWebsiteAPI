@@ -130,10 +130,10 @@ Route::get('/posts/delete/{username}/{url}',function ($username,$url){
     $rate=100/($likecount[0]+$dislikecount[0])*$likecount[0];
     if($status[0]=='like')
     {
-        rate::where('url','=',$url)->update(array('likecount' => $likecount[0]-1, 'rate'=>$rate));
+        rate::where('url','=',$url)->update(array('likecount' => $likecount[0]-1),array('rate'=>$rate));
     }
     else{
-        rate::where('url','=',$url)->update(array('dislikecount' => $dislikecount[0]-1,'rate'=>$rate));
+        rate::where('url','=',$url)->update(array('dislikecount' => $dislikecount[0]-1),array('rate'=>$rate));
     }
     post::where('userid','=',$userid[0])->where('url',$url)->delete();
     return(post::all());
