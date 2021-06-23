@@ -122,6 +122,12 @@ Route::get('/dislikeposts/{username}',function ($username){
     $posts=post::where('userid','=',$userid[0])->where('status','dislike')->get();
     return($posts);
 });
+Route::get('/posts/delete/{username}/{url}',function ($username,$url){
+    $userid=User::where('name','=', $username)->pluck('id');
+    $post=post::where('userid','=',$userid[0])->where('url',$url);
+    return($post);
+});
+
 Route::get('/rates',function (){
     return(rate::all());
 });
