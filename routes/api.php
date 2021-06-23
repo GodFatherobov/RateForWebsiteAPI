@@ -127,15 +127,20 @@ Route::get('/posts/delete/{username}/{url}',function ($username,$url){
     $status=post::where('userid','=',$userid[0])->where('url',$url)->pluck('status');
     $likecount=rate::where('url',$url)->pluck('likecount');
     $dislikecount=rate::where('url',$url)->pluck('dislikecount');
+    $rate=0;
     if($status[0]=='like')
     {
-        $likecount[0]=$likecount[0]-1;
-        $rate=100/($likecount[0]+$dislikecount[0])*$likecount[0];
-        rate::where('url','=',$url)->update(array('likecount' => $likecount[0],'rate'=>$rate));
+        $likecount[0] = $likecount[0] - 1;
+        if(($likecount[0]+$dislikecount[0])!=0) {
+            $rate = 100 / ($likecount[0] + $dislikecount[0]) * $likecount[0];
+        }
+        rate::where('url', '=', $url)->update(array('likecount' => $likecount[0], 'rate' => $rate));
     }
     else{
         $dislikecount[0]=$likecount[0]-1;
-        $rate=100/($likecount[0]+$dislikecount[0])*$likecount[0];
+        if(($likecount[0]+$dislikecount[0])!=0) {
+            $rate = 100 / ($likecount[0] + $dislikecount[0]) * $likecount[0];
+        }
         rate::where('url','=',$url)->update(array('dislikecount' => $dislikecount[0],'rate'=>$rate));
     }
     post::where('userid','=',$userid[0])->where('url',$url)->delete();
