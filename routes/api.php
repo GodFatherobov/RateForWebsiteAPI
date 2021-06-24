@@ -137,7 +137,7 @@ Route::get('/posts/delete/{username}/{url}',function ($username,$url){
         rate::where('url', '=', $url)->update(array('likecount' => $likecount[0], 'rate' => $rate));
     }
     else{
-        $dislikecount[0]=$likecount[0]-1;
+        $dislikecount[0]=$dislikecount[0]+1;
         if(($likecount[0]+$dislikecount[0])!=0) {
             $rate = 100 / ($likecount[0] + $dislikecount[0]) * $likecount[0];
         }
