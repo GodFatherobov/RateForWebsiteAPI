@@ -168,7 +168,7 @@ Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$
         }
     }
     foreach($picks as $pick) {
-        if ($pick != 'null') {
+        if ($pick != null) {
             $result[] = $pick;
         }
     }
