@@ -152,6 +152,7 @@ Route::get('/rates',function (){
 });
 Route::get('/rates/{require}/{percent}/{upordown}',function ($require,$percent,$upordown){
     $urls=Rate::all()->pluck('url');
+    $result=[];
     foreach ($urls as $url){
         if(Str :: contains ( $url , $require)){
             $data[]=$url;
